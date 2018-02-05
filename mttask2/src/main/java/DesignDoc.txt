@@ -1,0 +1,5 @@
+Reader to read the different files
+Factory to get different reader objects based on file type
+ThreadManager
+Wiki data reader threads
+Description Writer threads
