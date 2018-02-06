@@ -1,6 +1,7 @@
 package com.refactor.controller;
 
 import com.refactor.model.Book;
+import com.refactor.model.FictionalBook;
 import com.refactor.model.Rental;
 
 import java.io.Serializable;
@@ -41,32 +42,17 @@ public class Customer implements Serializable {
             Rental rental = (Rental) rentalsItr.next();
 
             // determine amounts for each book.
-            switch (rental.getBook().getBookCategory()) {
-                case Book.FICTION:
-                    thisAmount += 2;
-                    if (rental.getDaysRented() > 2)
-                        thisAmount += (rental.getDaysRented() - 2) * 1.5;
-                    break;
-                case Book.NON_FICTION:
-                    thisAmount += rental.getDaysRented() * 3;
-                    break;
-                case Book.CHILDRENS:
-                    thisAmount += 1.5;
-                    if (rental.getDaysRented() > 3)
-                        thisAmount += (rental.getDaysRented() - 3) * 2;
-                    break;
-            }
+            thisAmount = rental.getBook().getRentCalculationHelper().calculate(rental);
 
             // add frequent renter points
             frequentRenterPoints++;
 
             // add bonus for a two day new release rental
-            if ((rental.getBook().getBookCategory() == Book.FICTION) && rental.getDaysRented() > 1)
+            if ((rental.getBook() instanceof FictionalBook) && rental.getDaysRented() > 1)
                 frequentRenterPoints++;
 
             // show figures for this rental
-            result.append("\t").append(rental.getBook().getTitle()).append("\t").append(String.valueOf(thisAmount))
-                    .append("\n");
+            result.append("\t").append(rental.getBook().getTitle()).append("\t").append(String.valueOf(thisAmount)).append("\n");
             totalAmount += thisAmount;
         }
 

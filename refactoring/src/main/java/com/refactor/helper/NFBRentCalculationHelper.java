@@ -6,8 +6,11 @@ import com.refactor.model.Rental;
  * Created by abhimanyus on 2/5/18.
  */
 public class NFBRentCalculationHelper implements IRentCalculationHelper {
+
     @Override
-    public int calculate(Rental rental) {
-        return 0;
+    public double calculate(Rental rental) {
+        double thisAmount =0;
+        thisAmount += rental.getDaysRented() * 3;
+         return thisAmount;
     }
 }
