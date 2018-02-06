@@ -14,7 +14,8 @@ import java.util.concurrent.ExecutionException;
  * Created by abhimanyus on 2/1/18.
  *
  * This is the main class responsible for starting the flow.
- * From here the flow passes through CSVHelper ->
+ * From here the flow passes through CSVHelper -> FileWriterRecursiveTask
+ * TODO get rid of SOP to logger statements
  *
  */
 public class MtTaskController {
