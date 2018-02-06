@@ -7,22 +7,30 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * Created by abhimanyus on 2/1/18.
+ * A thread to write book details into a text file.
+ *
  */
-public class WriteToFile implements Callable<String>{
+public class FileWriterRecursiveTask extends RecursiveTask<String> {
 
 
     private final String fileName;
     private List<BookDetails> listOfBooks;
 
-    public WriteToFile(String fileName, List<BookDetails> listOfBooks) {
+    public FileWriterRecursiveTask(String fileName, List<BookDetails> listOfBooks) {
         this.listOfBooks = listOfBooks;
         this.fileName =  fileName;
     }
 
-    public String call() {
+    /**
+     *
+     * @return the whether a file is sucessfully created or not
+     */
+    @Override
+    protected String compute() {
         StringBuilder builder = new StringBuilder();
         for (BookDetails book: listOfBooks) {
             builder.append(book.toString() + "\n");

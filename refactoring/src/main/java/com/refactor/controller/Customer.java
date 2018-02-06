@@ -13,7 +13,7 @@ import java.util.List;
  * Customer class that denotes customer details as well as customer related
  * operations.
  *
- * @author chandrashekarv
+ * @author abhimanyus
  *
  */
 public class Customer implements Serializable {
@@ -58,7 +58,6 @@ public class Customer implements Serializable {
 
         result.append("Amount owed is ").append(String.valueOf(totalAmount)).append("\n");
         result.append("You earned ").append(String.valueOf(frequentRenterPoints)).append(" frequent renter points");
-
 
         return result.toString();
     }
