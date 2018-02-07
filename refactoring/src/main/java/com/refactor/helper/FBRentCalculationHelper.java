@@ -4,6 +4,8 @@ import com.refactor.model.Rental;
 
 /**
  * Created by abhimanyus on 2/5/18.
+ * Helper class for rent calculation in case of fictional book
+ *
  */
 public class FBRentCalculationHelper implements IRentCalculationHelper {
     @Override

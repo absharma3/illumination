@@ -1,6 +1,9 @@
 package com.refactor.model;
 /**
  * Created by abhimanyus on 2/2/18.
+ *
+ *
+ * Abstract implementation of IBook
  */
 
 import java.io.Serializable;
@@ -14,7 +17,7 @@ public abstract class Book implements Serializable, IBook {
     private long id;
     private String title;
 
-    public Book(final String title, final Date releaseDate) {
+    public Book(final String title, final Date releaseDa) {
         super();
         this.id = 123456; //Some random id to be generated
         this.title = title;
