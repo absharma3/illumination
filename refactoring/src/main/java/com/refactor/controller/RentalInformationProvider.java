@@ -44,10 +44,10 @@ public class RentalInformationProvider {
 
         StringBuilder result = new StringBuilder("Rental Record for " + this.customer.getName() + "\n");
         for(Map.Entry<Rental, Double>rentalAndRent: rentalsAndItsRent.entrySet()){
-            result.append("\t").append(rentalAndRent.getKey().getBook().getTitle()).append("\t").append(String.valueOf(rentalAndRent.getValue())).append("\n");
+            result.append("\t").append(rentalAndRent.getKey().getBook().getTitle()).append("\t").append(rentalAndRent.getValue()).append("\n");
         }
-        result.append("Amount owed is ").append(String.valueOf(this.totalRentAmount)).append("\n");
-        result.append("You earned ").append(String.valueOf(this.customer.getFrequentRenterPoints())).append(" frequent renter points");
+        result.append("Amount owed is ").append(this.totalRentAmount).append("\n");
+        result.append("You earned ").append(this.customer.getFrequentRenterPoints()).append(" frequent renter points");
         return result.toString();
     }
 
