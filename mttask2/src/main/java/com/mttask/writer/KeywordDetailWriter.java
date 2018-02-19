@@ -10,6 +10,6 @@ import com.mttask.http.model.KeywordDetail;
  */
 public interface KeywordDetailWriter {
 
-    public void write(KeywordDetail keywordDetail);
+    public String write(KeywordDetail keywordDetail);
 
 }
