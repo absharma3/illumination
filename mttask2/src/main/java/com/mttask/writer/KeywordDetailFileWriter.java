@@ -16,7 +16,7 @@ public class KeywordDetailFileWriter implements KeywordDetailWriter {
     private String extention = ".txt";
 
     public String write(KeywordDetail keywordDetail) {
-        String filePath = fileLocation + keywordDetail + extention;
+        String filePath = fileLocation + keywordDetail.getKeywordName() + extention;
 
         try {
             FileUtils.write(new File(filePath), keywordDetail.toString(), "UTF-16");

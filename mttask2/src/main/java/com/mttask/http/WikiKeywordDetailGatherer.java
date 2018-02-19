@@ -19,7 +19,7 @@ import java.util.List;
 public class WikiKeywordDetailGatherer implements KeywordDetailGatherer {
 
 
-    private String url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=   " ;
+    private static final String url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles&titles=";
 
     public KeywordDetail fetchInfo(String keyword) {
         try {

@@ -2,7 +2,9 @@ package com.mttask.manager;
 
 import com.mttask.http.model.KeywordDetail;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -15,11 +17,21 @@ public class WikiThreadMgr {
     ExecutorService executor = Executors.newCachedThreadPool();
 
     public void invokeWikiAndWrite(List<String> keywords){
+        List<Future<String>> returnVals = new ArrayList<Future<String>>();
         for (String keyword: keywords) {
             WikiInvokerAndWriter invokableTask = new WikiInvokerAndWriter(keyword);
-            Future<String> returnVal = executor.submit(invokableTask);
+             returnVals.add(executor.submit(invokableTask));
         }
-
+        for(Future<String> future : returnVals) {
+            try {
+                System.out.println(future.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        executor.shutdownNow();
     }
 
 }
