@@ -16,9 +16,11 @@ import java.util.concurrent.Callable;
 public class FileReader implements Callable<Boolean> {
 
     private File file = null;
+    private List<File>  files = null;
 
-    public FileReader(File file) {
+    public FileReader(File file, List<File> files) {
         this.file = file;
+        this.files = files;
     }
 
     @Override
@@ -35,7 +37,7 @@ public class FileReader implements Callable<Boolean> {
                     for (String word : words) {
                         Trie.INSTANCE.insert(word);
                     }
-                    FileInformationGatherer.INSTANCE.removeFile(file);
+                    files.remove(file);
                     return true;
 
                 } catch (IOException e) {

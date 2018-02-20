@@ -1,5 +1,10 @@
 package com.mttask.trie;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by abhimanyus on 2/20/18.
  */
@@ -14,16 +19,16 @@ public class Trie {
 
     public void insert(String word) {
         TrieNode current = root;
+        StringBuilder content = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
+            content.append(word.charAt(i));
             current = current.getChildren().
                     computeIfAbsent(word.charAt(i),
                             c -> {
-                                TrieNode node = new TrieNode();
-                                node.setContent(Character.toString(c));
+                                TrieNode node = new TrieNode(content.toString());
                                 return node;
                             });;
         }
-
         current.setCount(current.getCount()+1);
         current.setEndOfWord(true);
     }
@@ -58,5 +63,32 @@ public class Trie {
              return 0;
          }
     }
+
+    public List<String> autoComplete(String prefix){
+        TrieNode current = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
+            if (!current.getChildren().containsKey(ch)) {
+                return Collections.emptyList();
+            }
+            current = current.getChildren().get(ch);
+        }
+        return allPrefixes(current);
+    }
+
+    private List<String> allPrefixes(TrieNode current) {
+
+        List<String> diagnosisResults = new ArrayList<String>();
+        if (current.isEndOfWord()) {
+            diagnosisResults.add(current.getContent());
+        }
+        for (Map.Entry<Character, TrieNode> entry : current.getChildren().entrySet()) {
+            TrieNode child = entry.getValue();
+            List<String> childPrefixes = allPrefixes(child);
+            diagnosisResults.addAll(childPrefixes);
+        }
+        return diagnosisResults;
+    }
+
 
 }

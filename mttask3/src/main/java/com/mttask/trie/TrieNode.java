@@ -9,7 +9,6 @@ public class TrieNode {
 
     private HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
     private String content;
-    private boolean isWord;
     private int count = 0;
     private boolean endOfWord;
 
@@ -34,14 +33,6 @@ public class TrieNode {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public boolean isWord() {
-        return isWord;
-    }
-
-    public void setWord(boolean word) {
-        isWord = word;
     }
 
     public int getCount() {
