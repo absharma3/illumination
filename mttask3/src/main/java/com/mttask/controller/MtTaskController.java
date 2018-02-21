@@ -24,4 +24,10 @@ public class MtTaskController {
     }
 
 
+    public static void main(String [] args){
+        MtTaskController controller = new MtTaskController();
+        controller.autoComplete("th");
+    }
+
+
 }
