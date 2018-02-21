@@ -16,12 +16,11 @@ public class MtTaskController {
     public MtTaskController() {
         threadMgr = new FileReaderThreadMgr();
         threadMgr.readFiles();
-
     }
 
     public List<String> autoComplete(String prefix){
-        Trie trieInstance = Trie.INSTANCE;
-        return trieInstance.autoComplete(prefix);
+
+        return Trie.INSTANCE.autoComplete(prefix);
     }
 
 

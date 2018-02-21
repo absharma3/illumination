@@ -78,16 +78,16 @@ public class Trie {
 
     private List<String> allPrefixes(TrieNode current) {
 
-        List<String> diagnosisResults = new ArrayList<String>();
+        List<String> allWords = new ArrayList<String>();
         if (current.isEndOfWord()) {
-            diagnosisResults.add(current.getContent());
+            allWords.add(current.getContent());
         }
         for (Map.Entry<Character, TrieNode> entry : current.getChildren().entrySet()) {
             TrieNode child = entry.getValue();
             List<String> childPrefixes = allPrefixes(child);
-            diagnosisResults.addAll(childPrefixes);
+            allWords.addAll(childPrefixes);
         }
-        return diagnosisResults;
+        return allWords;
     }
 
 
