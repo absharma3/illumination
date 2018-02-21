@@ -15,6 +15,7 @@
         <module>collections</module>
         <module>mttask3</module>
         <module>generics</module>
+        <module>observer</module>
     </modules>
 
 
