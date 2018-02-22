@@ -1,5 +1,7 @@
 package com.annotations.model;
 
+import com.annotations.validator.CommonField;
+import com.annotations.validator.CommonFieldNames;
 import com.annotations.validator.FieldType;
 import com.annotations.validator.Validate;
 import java.util.Date;
@@ -9,8 +11,15 @@ import java.util.Date;
  */
 public class Aadhaar {
     private int id;
+
+    @CommonField(fieldName = CommonFieldNames.FULLNAME)
     @Validate(id= FieldType.STRING)
     private String fullname;
+
+    @CommonField(fieldName = CommonFieldNames.FATHER_NAME)
+    @Validate(id= FieldType.STRING)
+    private String fatherName;
+
     @Validate(id= FieldType.STRING)
     private String gender;
     @Validate(id= FieldType.STRING)

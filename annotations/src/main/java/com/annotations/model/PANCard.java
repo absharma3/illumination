@@ -1,5 +1,7 @@
 package com.annotations.model;
 
+import com.annotations.validator.CommonField;
+import com.annotations.validator.CommonFieldNames;
 import com.annotations.validator.FieldType;
 import com.annotations.validator.Validate;
 
@@ -11,8 +13,10 @@ import java.util.Date;
  */
 public class PANCard {
 
+    @CommonField(fieldName = CommonFieldNames.FULLNAME)
     @Validate(id= FieldType.STRING)
     private String fullname;
+    @CommonField(fieldName = CommonFieldNames.FATHER_NAME)
     @Validate(id=FieldType.STRING)
     private String fatherName;
     @Validate(id=FieldType.PAN_NUMBER)
