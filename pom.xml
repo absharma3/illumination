@@ -16,6 +16,7 @@
         <module>mttask3</module>
         <module>generics</module>
         <module>observer</module>
+        <module>annotations</module>
     </modules>
 
 
