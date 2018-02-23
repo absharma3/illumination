@@ -26,7 +26,10 @@ public class MtTaskController {
 
     public static void main(String [] args){
         MtTaskController controller = new MtTaskController();
-        controller.autoComplete("th");
+        List<String> words = controller.autoComplete("th");
+        for(String word : words){
+            System.out.println(word);
+        }
     }
 
 

@@ -32,7 +32,7 @@ public class FileReader implements Callable<Boolean> {
                 try {
                     List<String> lines = FileUtils.readLines(file, "UTF-16");
                     for (String line : lines) {
-                        Collections.addAll(words, line.split("[\\\\s]+"));
+                        Collections.addAll(words, line.split(" "));
                     }
                     for (String word : words) {
                         Trie.INSTANCE.insert(word);

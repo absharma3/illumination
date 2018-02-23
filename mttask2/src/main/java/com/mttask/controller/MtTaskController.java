@@ -1,5 +1,6 @@
 package com.mttask.controller;
 
+import com.mttask.constants.MtTaskConstants;
 import com.mttask.manager.WikiThreadMgr;
 import com.mttask.reader.CompanyKeywordReader;
 import com.mttask.reader.JavaKeywordsReader;
@@ -16,9 +17,9 @@ public class MtTaskController {
 
     public static void main(String [] args){
         List<String> keywords = new ArrayList<String>();
-        KeywordsReader javaKeywordsReader = new JavaKeywordsReader("/Users/abhimanyus/Desktop/Nonsense/base/illumination/mttask2/Multithreading_Task_2_java Keywords.txt");
-        KeywordsReader companyKeywordsReader = new CompanyKeywordReader("/Users/abhimanyus/Desktop/Nonsense/base/illumination/mttask2/Multithreading_Task_2_fortune1000companies.txt");
-        KeywordsReader languagesKeywordsReader = new ProgrammingLanguagesKeywordReader("/Users/abhimanyus/Desktop/Nonsense/base/illumination/mttask2/Multithreading_Task2_ProgrammingLanguages.txt");
+        KeywordsReader javaKeywordsReader = new JavaKeywordsReader(MtTaskConstants.JAVA_KEYWORDS_FILE_PATH.toString());
+        KeywordsReader companyKeywordsReader = new CompanyKeywordReader(MtTaskConstants.COMPANY_KEYWORDS_FILE_PATH.toString());
+        KeywordsReader languagesKeywordsReader = new ProgrammingLanguagesKeywordReader(MtTaskConstants.LANGUAGE_KEYWORDS_FILE_PATH.toString());
         keywords.addAll(javaKeywordsReader.read());
         keywords.addAll(companyKeywordsReader.read());
         keywords.addAll(languagesKeywordsReader.read());

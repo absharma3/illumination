@@ -26,6 +26,7 @@ public class WikiThreadMgr {
             try {
                 System.out.println(future.get());
             } catch (InterruptedException e) {
+                //TODO should have a logger or a better way of handling
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();

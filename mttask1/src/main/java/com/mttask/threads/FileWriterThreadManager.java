@@ -6,6 +6,7 @@ import com.mttask.model.BookDetails;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -16,12 +17,12 @@ import java.util.concurrent.ForkJoinPool;
  */
 public class FileWriterThreadManager {
 
-    private volatile int fileCount =0;
+    private AtomicInteger fileCount = new AtomicInteger();
     private ForkJoinPool threadPool = new ForkJoinPool();
     private List<String> returnValList = new ArrayList<String>();
 
     public void spawnThreadsForWrite(List<BookDetails> listOfBooks) {
-        fileCount ++;
+        fileCount.getAndAdd(1);
         FileWriterRecursiveTask wtf = new FileWriterRecursiveTask( MtTaskConstants.WRITE_FILE_NAME.toString() + fileCount + MtTaskConstants.FILE_EXTENSION.toString(),listOfBooks);
         String returnVals = threadPool.invoke(wtf);
         returnValList.add(returnVals);
