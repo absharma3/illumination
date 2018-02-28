@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class LRUCache {
     int size;
-    HashMap<Integer, Node> keysAndValues = new HashMap<Integer, Node>();
+    HashMap<Node, String> keysAndValues = new HashMap<Node,String>();
     Node headPointer =null;
     Node tailPointer =null;
 
@@ -18,12 +18,12 @@ public class LRUCache {
         this.size = size;
     }
 
-    public int get(int key) {
+    public int get(int value) {
+        Node key = new Node(value);
         if(keysAndValues.containsKey(key)){
-            Node n = keysAndValues.get(key);
-            remove(n);
-            setHeadPointer(n);
-            return n.value;
+            remove(key);
+            setHeadPointer(key);
+            return key.value;
         }
 
         return -1;
@@ -57,24 +57,22 @@ public class LRUCache {
             tailPointer = headPointer;
     }
 
-    public void set(int key, int value) {
+    public void set(int value) {
+        Node key = new Node(value);
         if(keysAndValues.containsKey(key)){
-            Node old = keysAndValues.get(key);
-            old.value = value;
-            remove(old);
-            setHeadPointer(old);
+            remove(key);
+            setHeadPointer(key);
         }else{
-            Node created = new Node(key, value);
+            Node created = new Node(value);
             if(keysAndValues.size()>= size){
-                keysAndValues.remove(tailPointer.key);
+                keysAndValues.remove(tailPointer);
                 remove(tailPointer);
                 setHeadPointer(created);
 
             }else{
                 setHeadPointer(created);
             }
-
-            keysAndValues.put(key, created);
+            keysAndValues.put(created, null);
         }
     }
 }

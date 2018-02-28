@@ -7,13 +7,27 @@ package com.collections.cache;
  *
  */
 class Node{
-    int key;
-    int value;
+
+    Integer value;
     Node previousNode;
     Node nextNode;
 
-    public Node(int key, int value){
-        this.key = key;
+    public Node(Integer value){
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Node node = (Node) o;
+
+        return value.equals(node.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 }
