@@ -58,6 +58,7 @@ public class CSVHelper {
                 listOfBooks.add(book);
                 currentCounter++;
             }
+            controller.spawnThreadsForWrite(listOfBooks);
         } finally {
             LineIterator.closeQuietly(it);
         }
