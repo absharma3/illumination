@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class FileWriterThreadManager {
 
-    private AtomicInteger fileCount = new AtomicInteger();
+    private static AtomicInteger fileCount = new AtomicInteger();
     private ForkJoinPool threadPool = new ForkJoinPool();
-    private List<String> returnValList = new ArrayList<String>();
+    private static List<String> returnValList = new ArrayList<String>();
 
     public void spawnThreadsForWrite(List<BookDetails> listOfBooks) {
         fileCount.getAndAdd(1);

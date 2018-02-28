@@ -39,7 +39,7 @@ public class FileWriterRecursiveTask extends RecursiveTask<String> {
         try {
             FileUtils.write(new File(fileName), builder.toString(), "UTF-16");
         } catch (IOException e) {
-            return "Unable to process";
+            return e.getMessage();
         }
         return "Sucessful processing of file" + this.fileName;
     }

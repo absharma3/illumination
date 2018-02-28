@@ -19,9 +19,10 @@ import java.util.List;
 public class CSVHelper {
 
     FileWriterThreadManager controller = new FileWriterThreadManager();
-    int threshold = 0;
+    int threshold = 100;
     public CSVHelper(int threshold) {
-        this.threshold = threshold;
+        if (threshold > 0)
+            this.threshold = threshold;
     }
 
 
@@ -44,8 +45,8 @@ public class CSVHelper {
             while (it.hasNext()) {
                 String line = it.nextLine();
                 String[] lineData = line.split(";");
-                BookDetails book = new BookDetails(lineData[0], lineData[1],lineData[2], lineData[3],lineData[4],lineData[5],lineData[6],lineData[7] );
-                if(currentCounter == threshold){
+                BookDetails book = new BookDetails(lineData[0], lineData[1], lineData[2], lineData[3], lineData[4], lineData[5], lineData[6], lineData[7]);
+                if (currentCounter == threshold) {
                     //spawn thread
                     //reset current counter
                     //reset list of books
@@ -53,10 +54,9 @@ public class CSVHelper {
                     currentCounter = 0;
                     listOfBooks = new ArrayList<BookDetails>();
 
-                }else {
-                    listOfBooks.add(book);
-                    currentCounter ++;
                 }
+                listOfBooks.add(book);
+                currentCounter++;
             }
         } finally {
             LineIterator.closeQuietly(it);
