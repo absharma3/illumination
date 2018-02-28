@@ -1,5 +1,6 @@
 package com.mttask.reader;
 
+import com.mttask.constants.MtTaskConstants;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -13,23 +14,15 @@ public class FileReaderThreadMgr {
     private ExecutorService executor = Executors.newFixedThreadPool(5);
     private List<Future<Boolean>> executionStatuses = new CopyOnWriteArrayList<>();
 
-    private static final String fileDirectory = "/Users/abhimanyus/Desktop/Nonsense/base/dump/";
     private List<File> filesList = new ArrayList<File>();
-    private String [] extentions = {".txt"};
 
     public void readFiles(){
-        while(!filesList.isEmpty()) {
-            File readableFile = null;
-            readableFile = this.getRandomFile();
-            while (Thread.holdsLock(readableFile)) {
-                readableFile = this.getRandomFile();
-            }
 
-            FileReader callableFileReader = new FileReader(readableFile, filesList);
+        while (!filesList.isEmpty()) {
+            FileReader callableFileReader = new FileReader(filesList.get(0), filesList);
             Future<Boolean> executionStatus = executor.submit(callableFileReader);
             executionStatuses.add(executionStatus);
         }
-
         for(Future<Boolean> future : executionStatuses){
             try {
                 future.get();
@@ -42,17 +35,10 @@ public class FileReaderThreadMgr {
     }
 
     public FileReaderThreadMgr() {
-        File directory = new File(fileDirectory);
+        File directory = new File(String.valueOf(MtTaskConstants.FILE_DIRECTORY));
         //get all the files from a directory
         File[] fList = directory.listFiles();
         Collections.addAll(filesList,fList);
-    }
-
-    public File getRandomFile(){
-        int size = filesList.size();
-        int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
-        File file = filesList.get(item);
-        return file;
     }
 
 }

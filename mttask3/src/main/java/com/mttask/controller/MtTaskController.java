@@ -10,26 +10,16 @@ import java.util.List;
  */
 public class MtTaskController {
 
-    FileReaderThreadMgr threadMgr = null;
-
-
-    public MtTaskController() {
-        threadMgr = new FileReaderThreadMgr();
-        threadMgr.readFiles();
-    }
+    FileReaderThreadMgr threadMgr = new FileReaderThreadMgr();
 
     public List<String> autoComplete(String prefix){
-
         return Trie.INSTANCE.autoComplete(prefix);
     }
 
 
-    public static void main(String [] args){
-        MtTaskController controller = new MtTaskController();
-        List<String> words = controller.autoComplete("th");
-        for(String word : words){
-            System.out.println(word);
-        }
+    public void readFiles(){
+        threadMgr = new FileReaderThreadMgr();
+        threadMgr.readFiles();
     }
 
 

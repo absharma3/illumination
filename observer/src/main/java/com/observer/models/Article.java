@@ -1,8 +1,5 @@
 package com.observer.models;
 
-import com.observer.logic.ObservationManager;
-import com.observer.logic.ObservationManagerFactory;
-
 /**
  * Created by abhimanyus on 2/21/18.
  */
@@ -13,8 +10,6 @@ public class Article {
     private String body;
 
     private Blog parentBlog;
-
-    private ObservationManager observationManager = ObservationManagerFactory.getObservationMgr();
 
     public Article(Blog parentBlog) {
         this.parentBlog = parentBlog;
@@ -54,8 +49,6 @@ public class Article {
 
     public void update(){
         //Some more code which needs to be performed when object is updated
-        observationManager.notifyUser(this);
-        observationManager.notifyUser(this.getParentBlog());
     }
 
 }
