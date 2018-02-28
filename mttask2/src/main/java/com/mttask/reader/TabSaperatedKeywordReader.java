@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by abhimanyus on 2/9/18.
  */
-public class CompanyKeywordReader extends AbstractKeywordReader {
+public class TabSaperatedKeywordReader extends AbstractKeywordReader {
 
 
-    public CompanyKeywordReader(String filePath) {
+    public TabSaperatedKeywordReader(String filePath) {
         super(filePath);
     }
 
