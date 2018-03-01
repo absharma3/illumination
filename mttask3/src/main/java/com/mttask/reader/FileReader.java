@@ -1,6 +1,7 @@
 package com.mttask.reader;
 
 import com.mttask.trie.Trie;
+import com.mttask.trie.writer.TrieUpdateThreadMgr;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class FileReader implements Callable<Boolean> {
 
     private File file = null;
     private List<File>  files = null;
+    private static TrieUpdateThreadMgr threadMgr = new TrieUpdateThreadMgr();
 
     public FileReader(File file, List<File> files) {
         this.file = file;
@@ -34,9 +36,7 @@ public class FileReader implements Callable<Boolean> {
                     for (String line : lines) {
                         Collections.addAll(words, line.split(" "));
                     }
-                    for (String word : words) {
-                        Trie.INSTANCE.insert(word);
-                    }
+                    threadMgr.addWords(words);
                     files.remove(file);
                     return true;
 
